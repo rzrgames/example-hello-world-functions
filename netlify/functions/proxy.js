@@ -1,7 +1,7 @@
 const express = require('express');
 const corsAnywhere = require('cors-anywhere');
 const app = express();
-
+const serverless = require('serverless-http');
 // Create a CORS Anywhere proxy
 const proxy = corsAnywhere.createServer({
     originWhitelist: [], // Allow all origins
@@ -27,3 +27,4 @@ app.use((req, res) => {
 });
 
 module.exports = app;
+module.exports.handler = serverless(app);
